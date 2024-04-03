@@ -2,15 +2,17 @@ const express = require('express');
 
 const app = express();
 
-const dbConnection = mongoose.connect("mongodb+srv://teja_071199:test@atlascluster.a4vovbu.mongodb.net/")
-
-dbConnection.then(() => {
-    console.log("Database connection configured successfully!")
-})
-
 
 app.use(express.json());
 
+app.get("/RegisterUser", (req,res) => {
+    try{
+        res.send("Hitted url Successfully!");
+    }
+    catch(err){
+        console.log("Error: " + err);
+    }
+})
 
 
 app.listen(8081, () => {
