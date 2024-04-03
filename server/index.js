@@ -1,18 +1,15 @@
 const express = require('express');
 
+const UserSignup = require('./routes/signup.route');
+
 const app = express();
 
-
 app.use(express.json());
+app.use(express.urlencoded({extended:true}));
 
-app.get("/RegisterUser", (req,res) => {
-    try{
-        res.send("Hitted url Successfully!");
-    }
-    catch(err){
-        console.log("Error: " + err);
-    }
-})
+//   ============= Routes Configuration =============
+
+app.use('/Signup', UserSignup);
 
 
 app.listen(8081, () => {
