@@ -2,19 +2,21 @@ import { useFormik } from "formik";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+import axios from "axios";
+
 
 export function Login() {
     const [response, setResponse] = useState("");
 
     const formik = useFormik({
         initialValues: {
-            userName: "",
+            userEmail: "",
             userPassword: "",
         },
         validate: (values) => {
             let errors = {};
-            if (!values.userName) {
-                errors.unameErr = "User name required";
+            if (!values.userEmail) {
+                errors.uemailErr = "User name required";
             }
             if (!values.userPassword) {
                 errors.upasswordErr = "Password required";
@@ -22,7 +24,15 @@ export function Login() {
             return errors;
         },
         onSubmit: (values) => {
-            console.log(values);
+            // console.log(values);
+            axios.post("http://localhost:8081/Login", values)
+            .then((response) => {
+                console.log(response);
+                setResponse(response.data);
+            })
+            .catch((err) => {
+                console.log("Error: " + err)
+            })
         },
     });
 
@@ -44,16 +54,16 @@ export function Login() {
                     <form onSubmit={formik.handleSubmit} autoComplete="off">
                         <input
                             type="text"
-                            placeholder="Your User Name"
-                            name="userName"
-                            value={formik.values.userName}
+                            placeholder="Your E-mail Id"
+                            name="userEmail"
+                            value={formik.values.userEmail}
                             onChange={formik.handleChange}
                             className="form-control mb-2 w-100 "
                         />
-                        {(formik.errors.unameErr) ? 
+                        {(formik.errors.uemailErr) ? 
                             <div className="text-danger fw-bold">
                                 <span className="b bi-info text-danger"></span>
-                                {formik.errors.unameErr}
+                                {formik.errors.uemailErr}
                             </div>
                          : null
                         }
