@@ -12,16 +12,43 @@ export const UserSignup = () => {
             userConfirmPassword: "",
         },
         onSubmit: (values) => {
-            // console.log(values);
-            axios.post("http://localhost:8081/Signup", values)
+
+        
+            console.log(values);
+            {/*axios.post("http://localhost:8081/Signup", values)
             .then((response) => {
                 console.log(response);
             })
             .catch((err) => {
                 console.log("Error: " + err);
-            })
+            })*/}
+
+        
         },
-    });
+        validate: (values) => {
+            let errors = {};
+            if (!values.userName){
+                errors.userName = "*User name Required"
+            }
+            if (!values.userEmailid){ 
+                errors.userEmailid = "*E-mail id Required"
+            }
+            if (!values.userContact){
+                errors.userContact = "*Contact number Required"
+            }
+            if (!values.userPassword){ 
+                errors.userPassword = "*Password Required"
+            }
+            if (!values.userConfirmPassword){ 
+                errors.userConfirmPassword = "*Password Confirmation Required"
+            }
+            if (values.userPassword !== values.userConfirmPassword){
+                errors.passwordComparisionErr = "Entered passwords are not matching"
+            }
+            return errors;
+        }
+           
+    })
     return (
         <div
             className="container-fluid d-flex justify-content-center align-items-center"
@@ -46,6 +73,7 @@ export const UserSignup = () => {
                         value={formik.values.userName}
                         onChange={formik.handleChange}
                     />
+                    { formik.errors.userName?<div className="text-danger">{formik.errors.userName}</div>:null }
                 </div>
                 <div className="mt-1">
                     <label htmlFor="emailId"> Email: </label>
@@ -57,8 +85,10 @@ export const UserSignup = () => {
                         value={formik.values.userEmailid}
                         onChange={formik.handleChange}
                     />
+                    { formik.errors.userEmailid?<div className="text-danger">{formik.errors.userEmailid}</div>:null }
                 </div>
-                <div className="mt-1">
+                
+                {/* <div className="mt-1">
                     <label className="me-2"> Gender: </label>
                     <input
                         type="radio"
@@ -80,7 +110,8 @@ export const UserSignup = () => {
                         onChange={formik.handleChange}
                     />
                     <label htmlFor="female"> Female </label>
-                </div>
+                </div> */}
+
                 <div className="mt-1">
                     <label htmlFor="phoneNumber"> Phone : </label>
                     <input
@@ -91,6 +122,7 @@ export const UserSignup = () => {
                         value={formik.values.userContact}
                         onChange={formik.handleChange}
                     />
+                    {(formik.errors.userContact)?<div className="text-danger">{formik.errors.userContact} </div>:null}
                 </div>
                 <div className="mt-1">
                     <label htmlFor="password"> Password: </label>
@@ -102,6 +134,7 @@ export const UserSignup = () => {
                         value={formik.values.userPassword}
                         onChange={formik.handleChange}
                     />
+                    { formik.errors.userPassword?<div className="text-danger">{formik.errors.userPassword}</div>:null }
                 </div>
                 <div className="mt-1">
                     <label htmlFor="confirmPassword"> Confirm Password: </label>
@@ -113,14 +146,15 @@ export const UserSignup = () => {
                         value={formik.values.userConfirmPassword}
                         onChange={formik.handleChange}
                     />
+                    { formik.errors.userConfirmPassword?<div className="text-danger">{formik.errors.userConfirmPassword}</div>:null }
                 </div>
+                { formik.errors.passwordComparisionErr?<div className="text-danger">{formik.errors.passwordComparisionErr}</div>:null }
                 <div className="mt-1" style={{ textAlign: "center" }}>
                     <button
                         className="btn btn-primary w-100 mt-3"
                         type="submit"
                     >
-                        {" "}
-                        Sign in{" "}
+                        Sign in
                         <span className="bi bi-arrow-right-short"></span>{" "}
                     </button>
                     <p className="mt-3">
