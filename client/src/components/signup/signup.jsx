@@ -1,7 +1,10 @@
 import { useFormik } from "formik";
 import axios from "axios";
+import { useState } from "react";
 
 export const Signup = () => {
+    const [responseFromDB,setResponseFromDB] = useState("");
+
     const formik = useFormik({
         initialValues: {
             name: "",
@@ -12,15 +15,17 @@ export const Signup = () => {
         },
         onSubmit: (values) => {
             console.log(values);
-            {
-                /*axios.post("http://localhost:8081/Signup", values)
+            axios.post("http://localhost:8081/Signup", values)
             .then((response) => {
                 console.log(response);
+                setResponseFromDB(response.data);
+                
             })
             .catch((err) => {
                 console.log("Error: " + err);
-            })*/
-            }
+            })
+
+            
         },
         validate: (values) => {
             let errors = {};
@@ -139,8 +144,8 @@ export const Signup = () => {
                         Create Account
                         <span className="bi bi-chevron-right"></span>
                         </button>
-                    
                     </form>
+                    <div className="text-success text-center mt-3 fw-bold"> {responseFromDB} </div>
                     <hr />
                     <div className="mt-2" style={{ textAlign: "left" }}>
                         <p>

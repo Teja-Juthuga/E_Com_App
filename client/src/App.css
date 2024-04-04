@@ -8,8 +8,14 @@ a {
   color: #00B7FF;
 }
 
+.loginMain{
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 main .container {
-  height: 75vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,10 +28,10 @@ main .container .login-card {
   border-radius: 16px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;}
 
-.login-card input {
+/* .login-card input {
   width: fit-content;
   color: #00B7FF;
-}
+} */
 
 .lg-cart-img {
   height: 350px;
