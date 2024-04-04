@@ -10,11 +10,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // Bootstrap Icons
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
 
-import { UserSignup } from './components/signup/signup';
-import { UserLogin } from './components/login/login';
-import { Ex } from './components/ex/ex';
-import { Navbar } from './components/navbar/navbar';
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

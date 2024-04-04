@@ -1,5 +1,7 @@
 import { useFormik } from "formik";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+
 
 export function Login() {
     const [response, setResponse] = useState("");
@@ -71,9 +73,9 @@ export function Login() {
                             : null
                         }
                         <div className="mb-4" style={{ textAlign: "right" }}>
-                            <a className="text-danger" href="#">
+                            <Link className="text-danger" to="/AccountRecover">
                                 Forgot Password?
-                            </a>
+                            </Link>
                         </div>
                         <button
                             type="submit"
@@ -85,9 +87,9 @@ export function Login() {
                     <div className="mt-3">
                         <p>
                             New to E-Kart?
-                            <a className="text-danger" href="#">
+                            <Link className="text-danger" to={'/Signup'}>
                                 Create your E-Kart Account
-                            </a>
+                            </Link>
                         </p>
                     </div>
                 </div>

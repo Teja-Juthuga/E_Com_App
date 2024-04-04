@@ -2,6 +2,8 @@ import { useFormik } from "formik";
 import axios from "axios";
 import { useState } from "react";
 
+import { Link } from "react-router-dom";
+
 export const Signup = () => {
     const [responseFromDB,setResponseFromDB] = useState("");
 
@@ -150,12 +152,12 @@ export const Signup = () => {
                     <div className="mt-2" style={{ textAlign: "left" }}>
                         <p>
                             Already have an account?&nbsp;
-                            <a
+                            <Link
                                 className="text-danger"
-                                href="#"
+                                to="/"
                             >
                                Sign in
-                            </a>
+                            </Link>
                         </p>
                         <p>
                             By creating an account or logging in, you agree to
