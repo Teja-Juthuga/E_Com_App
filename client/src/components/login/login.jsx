@@ -1,23 +1,49 @@
 export function UserLogin() {
     return (
-        <div className="container-fluid d-flex justify-content-center align-items-center" style={{height:"100vh"}}>
-            <form className="border border-2 mt-4 p-3 rounded rounded-2 w-25 shadow">
-                <h2 style={{textAlign:"center"}}> <span className="bi bi-person-fill text-dark"></span> User Login </h2>
-                <hr/>
-                <div >
-                    <label for="userId"> User Id: </label>
-                    <input type="text" id="userId" className="form-control"></input>
+        <main>
+            <div className="container">
+                <div className="cart-image-div">
+                    <img src="images/cartimage.png" className="cart-image" />
                 </div>
-                <div>
-                    <label for="userPassword"> Password: </label>
-                    <input type="password" id="userPassword" className="form-control"></input>
+                <div className="card login-card">
+                    <h2 className="text-danger fs-2">
+                        <span className="bi bi-person-fill"></span>
+                        <b> User </b>
+                    </h2>
+                    <p style={{ fontSize: "16px", color: "grey" }}>
+                        Get access to your Orders, Wishlist and Recommendations
+                    </p>
+                    <hr />
+                    <input
+                        type="text"
+                        id="userName"
+                        placeholder="Your User Name"
+                        className="form-control mb-2 w-100 "
+                    />
+                    <input
+                        type="password"
+                        id="userPassword"
+                        placeholder="Enter Your password"
+                        className="form-control mb-2 w-100 "
+                    />
+                    <div className="mb-4" style={{ textAlign: "right" }}>
+                        <a className="text-danger" href="#">
+                            Forgot Password?
+                        </a>
+                    </div>
+                    <button className="btn btn-danger btn-lg w-100 p-2">
+                        Login <span className="bi bi-chevron-right"></span>
+                    </button>
+                    <div className="mt-3">
+                        <p>
+                            New to E-Kart?
+                            <a className="text-danger" href="#">
+                                Create your E-Kart Account
+                            </a>
+                        </p>
+                    </div>
                 </div>
-                <div style={{textAlign:"center"}}>
-                <button className="btn btn-primary w-100 mt-3"> Login <span className="bi bi-arrow-right-short"></span> </button>
-                </div>
-                <p className="text-center mt-3">Not Registered? <a href="">Sign up</a></p>
-            </form>
-            
-        </div>
+            </div>
+        </main>
     );
 }
