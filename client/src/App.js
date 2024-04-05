@@ -13,6 +13,7 @@ import {
 } from "react-router-dom";
 import { SignupPage } from "./components/signup/signupPage";
 import { Products } from "./components/productspage/products";
+import { ProductsPage } from "./components/productspage/productspage";
 
 
 const router = createBrowserRouter([
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
   },
   {
     path : "/Shop",
-    element : <Products />
+    element : <ProductsPage />
   }
 
 ]);

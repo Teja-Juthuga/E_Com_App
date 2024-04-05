@@ -60,7 +60,7 @@ export function Products() {
     }
 
     return (
-        <div style={{ height: "100vh", overflowX: "hidden" }}>
+        <div style={{ height: "100vh", overflowX: "hidden"}}>
             <header className="d-flex justify-content-between p-2 d-flex justify-conent-between" style={{backgroundColor: "rgba(0, 0, 0, 0.1)"}}>
                 <div>
                     <img
@@ -110,7 +110,7 @@ export function Products() {
                     </nav>
                     <main className="col-8">
                         <div
-                            className="d-flex flex-wrap overflow-auto"
+                            className="d-flex flex-wrap "
                             style={{ height: "550px" }}
                         >
                             {products.map((product) => (
