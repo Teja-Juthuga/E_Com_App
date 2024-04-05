@@ -16,7 +16,7 @@ export const Signup = () => {
             confirmPassword: "",
         },
         onSubmit: (values) => {
-            console.log(values);
+            // console.log(values);
             axios.post("http://localhost:8081/Signup", values)
             .then((response) => {
                 console.log(response);

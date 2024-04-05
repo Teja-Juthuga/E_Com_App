@@ -8,7 +8,7 @@ const dbName = "eCommerceApp";
 async function connectDB() {
     await client.connect();
     const db = client.db(dbName);
-    console.log("connected to testDB");
+    console.log("Connected to " + dbName);
     return db
 }
 
