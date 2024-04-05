@@ -94,6 +94,7 @@ export function Login() {
                             Login <span className="bi bi-chevron-right"></span>
                         </button>
                     </form>
+                    <div className="text-success"> {response} </div>
                     <div className="mt-3">
                         <p>
                             New to E-Kart?

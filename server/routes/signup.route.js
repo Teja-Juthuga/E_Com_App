@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
+
 const {connectDB} = require('../database/connectDB');
 
 const main = async (userDetails) => {
@@ -16,10 +20,14 @@ const main = async (userDetails) => {
         return "User Already Exist! Please try Signin."
     }
     else{
+        await bcrypt.hash(userDetails.password, saltRounds)
+        .then(function(hashedPassword) {
+            // console.log(hash);
+            userDetails.password = hashedPassword;
+        });
         const result = await collection.insertOne(userDetails);
         return result;
     }
-    
 };
 
 router.post('/', async (req, res) => {

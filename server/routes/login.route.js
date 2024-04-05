@@ -1,12 +1,24 @@
 const express = require("express");
 const router = express.Router();
+
+const bcrypt = require('bcrypt');
+
 const {connectDB} = require('../database/connectDB');
 
 const main = async (userDetails) => {
     const connection = await connectDB();
     const collection = connection.collection("users");
-    const result = await collection.findOne({emailId : userDetails.userEmail});
-    return result;
+    const dbUser = await collection.findOne({emailId : userDetails.userEmail});
+    if (dbUser === undefined){
+        return "Invalid User";
+    }else {
+        const isPasswordMatched = await bcrypt.compare(userDetails.password, dbUser.password);
+        if (isPasswordMatched === true) {
+            return "Login Success!";
+          } else {
+            return "Invalid Password";
+          }
+    }
 };
 
 router.post("/", async (req, res) => {
@@ -20,9 +32,8 @@ router.post("/", async (req, res) => {
         else {
             res.status(200).send("Authorised user")
         }
-        
     }catch(err){
-        res.send("Error: " + err); 
+        res.send("Error: " + err);
     }
 })
 
