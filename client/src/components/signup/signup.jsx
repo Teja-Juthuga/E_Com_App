@@ -1,8 +1,8 @@
-import { useFormik } from "formik";
-import axios from "axios";
 import { useState } from "react";
-
+import { useFormik } from "formik";
 import { Link } from "react-router-dom";
+
+import axios from "axios";
 
 export const Signup = () => {
     const [responseFromDB,setResponseFromDB] = useState("");
@@ -103,7 +103,6 @@ export const Signup = () => {
                             <dd>
                                 <input
                                     type="email"
-                                    id="emailId"
                                     placeholder="abc@gmail.com"
                                     className="form-control mb-2"
                                     name="emailid"

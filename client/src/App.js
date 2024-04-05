@@ -12,6 +12,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { SignupPage } from "./components/signup/signupPage";
+import { Products } from "./components/productspage/products";
 
 
 const router = createBrowserRouter([
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path : "/AccountRecover",
     element : <AccountRecoverPage/>
+  },
+  {
+    path : "/Shop",
+    element : <Products />
   }
 
 ]);

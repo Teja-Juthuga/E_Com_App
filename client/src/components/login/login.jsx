@@ -87,14 +87,16 @@ export function Login() {
                                 Forgot Password?
                             </Link>
                         </div>
-                        <button
-                            type="submit"
-                            className="btn btn-danger btn-lg w-100 p-2"
-                        >
-                            Login <span className="bi bi-chevron-right"></span>
-                        </button>
+                        <Link to={'/Shop'}>
+                            <button
+                                type="submit"
+                                className="btn btn-danger btn-lg w-100 p-2"
+                            >
+                                Login <span className="bi bi-chevron-right"></span>
+                            </button>
+                        </Link>
                     </form>
-                    {/* <div className="text-success"> {response} </div> */}
+                    <div className="text-success fw-bold mt-3"> {response} </div>
                     <div className="mt-3">
                         <p>
                             New to E-Kart?

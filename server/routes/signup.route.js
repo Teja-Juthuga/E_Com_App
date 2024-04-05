@@ -13,8 +13,7 @@ const main = async (userDetails) => {
     const collection = connection.collection("users");
     delete userDetails.confirmPassword;
     let checkUser = await collection.findOne({emailid : userDetails.emailid})
-    
-    // console.log({emailid : userDetails.emailid});
+
     
     if (checkUser){
         return "User Already Exist! Please try Signin."

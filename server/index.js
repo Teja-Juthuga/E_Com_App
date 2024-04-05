@@ -16,5 +16,5 @@ app.use("/Login", UserLogin);
 
 
 app.listen(8081, () => {
-    console.log("server is Listening at http://localhost:8081");
+    console.log("Server is running at http://localhost:8081");
 });

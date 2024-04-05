@@ -9,6 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Bootstrap Icons
 import 'bootstrap-icons/font/bootstrap-icons.min.css';
+import { Products } from './components/productspage/products';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
