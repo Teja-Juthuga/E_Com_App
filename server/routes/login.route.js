@@ -19,11 +19,10 @@ const main = async (userDetails) => {
         .find({ emailid: userDetails.userEmail })
         .toArray();
     if (user[0] == undefined) {
-        return "Invaild User";
+        return {result : "Invaild User"};
     } else {
         let payload = {
-            id : user[0]['_id'],
-            emailid: user[0]['emailid']
+            id : user[0]['_id']
         }
         // let serverResponse = {};
         const isPasswordMatched = await bcrypt.compare(userDetails.userPassword, user[0]['password']);
@@ -60,7 +59,7 @@ const main = async (userDetails) => {
 router.post("/", async (req, res) => {
     try {
         const result = await main(req.body);
-        console.log("result " + result);
+        console.log("result from /Login : " + JSON.stringify(result));
         res.send(result);
     } catch (err) {
         console.log("+++Error:- " + err);

@@ -1,19 +1,15 @@
-import { Navbar } from "./components/navbar/navbar";
-import { Login } from "./components/login/login";
-import { Footer } from "./components/footer/footer";
-import { Signup } from "./components/signup/signup";
-
-import { LoginPage } from "./components/login/loginpage";
-import { AccountRecoverPage } from "./components/AccountRecover/accountrecoverpage";
+import { useState, createContext } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+
+import { LoginPage } from "./components/login/loginpage";
 import { SignupPage } from "./components/signup/signupPage";
-import { Products } from "./components/productspage/products";
+import { AccountRecoverPage } from "./components/AccountRecover/accountrecoverpage";
 import { ProductsPage } from "./components/productspage/productspage";
+
+
+export const store = createContext();
 
 
 const router = createBrowserRouter([
@@ -36,10 +32,11 @@ const router = createBrowserRouter([
 
 ]);
 function App() {
-    return (
-        <div >
+  const [token, setToken] = useState(null);
+    return ( 
+        <store.Provider value={[token,setToken]} >
             <RouterProvider router={router} />
-        </div>
+        </store.Provider>
     );
 }
 

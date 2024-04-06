@@ -1,7 +1,17 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { store } from "../../App";
+import axios from "axios";
 
 export function Products() {
+    const [token,setToken] = useContext(store);
+    const [data,setData] = useState(null);
+    const navigate = useNavigate();
+    
+    if (!token){
+        navigate("/");
+    }
+
     const [categories, setCategories] = useState([]);
     const [products, setProducts] = useState([
         {
@@ -34,7 +44,16 @@ export function Products() {
             });
     }
 
-    useEffect(() => {
+    useEffect(() => { 
+        // axios.get("http://localhost:8081/Products", {
+        //     headers : {
+        //         'x-token' : token
+        //     }
+        // })
+        // .then((res)=> setData(res.data))
+        // .catch((err) => {
+        //     console.log(err);
+        // })
         LoadCategories();
         LoadProducts("http://fakestoreapi.com/products");
     }, []);
@@ -58,6 +77,10 @@ export function Products() {
                 alert(`${product.title}\nAdded to Cart`);
             });
     }
+    const handleSignout = (e) => {
+        console.log(e.target.className);
+        setToken(null)
+    };
 
     return (
         <div style={{ height: "100vh", overflowX: "hidden"}}>
@@ -80,7 +103,7 @@ export function Products() {
                             {cartCount}
                         </span>
                     </button>
-                    <button className="btn btn-danger ms-3">
+                    <button className="btn btn-danger ms-3" onClick={handleSignout}>
                         {" "}
                         Sign out{" "}
                         <span className="bi bi-box-arrow-right fs-5"></span>{" "}
@@ -117,6 +140,7 @@ export function Products() {
                                 <div
                                     className="card p-2 m-2"
                                     style={{ width: "200px" }}
+                                    key={product.id}
                                 >
                                     <img
                                         src={product.image}

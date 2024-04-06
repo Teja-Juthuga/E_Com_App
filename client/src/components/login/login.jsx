@@ -1,13 +1,15 @@
 import { useFormik } from "formik";
-import { useState } from "react";
+import { useState , useContext } from "react";
 import { Link } from "react-router-dom";
-
 import axios from "axios";
+import { store } from "../../App";
+import { useNavigate } from "react-router-dom";
 
 
 export function Login() {
     const [response, setResponse] = useState("");
-    const [redirectToShop, setRedirectToShop] = useState(false);
+    const [token, setToken] = useContext(store);
+    const navigate = useNavigate();
 
     const formik = useFormik({
         initialValues: {
@@ -27,12 +29,13 @@ export function Login() {
         onSubmit: (values) => {
             // console.log(values);
             axios.post("http://localhost:8081/Login", values)
-            .then((response) => {
-                console.log(response);
+            .then((response) => {                
                 setResponse(response.data.result);
-                if(response.data === "Login Success!") {
-                    setRedirectToShop(true);
+                if(response.data.token) {
+                    navigate("/Shop");
                 }
+
+                setToken(response.data.token);
             })
             .catch((err) => {
                 console.log("Error: " + err)
