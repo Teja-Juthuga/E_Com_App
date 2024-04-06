@@ -6,7 +6,13 @@ const UserLogin = require("./routes/login.route");
 const Products = require("./routes/products.route");
 
 const app = express();
-app.use(cors({origin: "*"}));
+app.use(cors(
+    {
+        origin : ["https://ekartapp.vercel.app"],
+        methods : ["POST","GET"],
+        credentails: true
+    }
+));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
