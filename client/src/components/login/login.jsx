@@ -7,6 +7,7 @@ import axios from "axios";
 
 export function Login() {
     const [response, setResponse] = useState("");
+    const [redirectToShop, setRedirectToShop] = useState(false);
 
     const formik = useFormik({
         initialValues: {
@@ -28,7 +29,10 @@ export function Login() {
             axios.post("http://localhost:8081/Login", values)
             .then((response) => {
                 console.log(response);
-                setResponse(response.data);
+                setResponse(response.data.result);
+                if(response.data === "Login Success!") {
+                    setRedirectToShop(true);
+                }
             })
             .catch((err) => {
                 console.log("Error: " + err)
@@ -87,16 +91,14 @@ export function Login() {
                                 Forgot Password?
                             </Link>
                         </div>
-                        <Link to={'/Shop'}>
-                            <button
-                                type="submit"
-                                className="btn btn-danger btn-lg w-100 p-2"
-                            >
-                                Login <span className="bi bi-chevron-right"></span>
-                            </button>
-                        </Link>
+                        <button
+                            type="submit"
+                            className="btn btn-danger btn-lg w-100 p-2"
+                        >
+                            Login <span className="bi bi-chevron-right"></span>
+                        </button>
+                        {(! response === "Login Success!" )? null : <div className="mt-3 text-danger fw-bold">{response} </div>}
                     </form>
-                    <div className="text-success fw-bold mt-3"> {response} </div>
                     <div className="mt-3">
                         <p>
                             New to E-Kart?

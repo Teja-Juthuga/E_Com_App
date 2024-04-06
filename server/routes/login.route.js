@@ -2,6 +2,12 @@ const express = require("express");
 const router = express.Router();
 
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
+require('dotenv').config();
+
+const secretKey = process.env.SECRETKEY;
+
 
 const { connectDB } = require("../database/connectDB");
 const collectionName = "users";
@@ -15,11 +21,38 @@ const main = async (userDetails) => {
     if (user[0] == undefined) {
         return "Invaild User";
     } else {
+        let payload = {
+            id : user[0]['_id'],
+            emailid: user[0]['emailid']
+        }
+        // let serverResponse = {};
         const isPasswordMatched = await bcrypt.compare(userDetails.userPassword, user[0]['password']);
         if (isPasswordMatched === true) {
-            return "Login Success!"
+            return new Promise((resolve, reject) => {
+                jwt.sign(payload, secretKey, { expiresIn: '1h' }, (err, token) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve({ result : "Login Success!", token: token });
+                    }
+                });
+            });
+            /*
+           jwt.sign(payload, secretKey,{ expiresIn: '1h'}, 
+                (err, token) => {
+                    if (err){
+                        throw err
+                    } else {
+                        // serverResponse.response = "Login Success!";
+                        // serverResponse.token = token;
+                        // console.log("serverResponse: " + JSON.stringify(serverResponse));
+                        return { token: token };
+                    }
+                }
+            )
+            */
         } else {
-            return "Invalid Password"
+            return {result : "Invalid Password"};
         }
     }
 };
@@ -27,7 +60,7 @@ const main = async (userDetails) => {
 router.post("/", async (req, res) => {
     try {
         const result = await main(req.body);
-        console.log(result);
+        console.log("result " + result);
         res.send(result);
     } catch (err) {
         console.log("+++Error:- " + err);
