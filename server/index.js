@@ -8,9 +8,7 @@ const Products = require("./routes/products.route");
 const app = express();
 app.use(cors(
     {
-        origin : ["https://ekartapp.vercel.app"],
-        methods : ["POST","GET"],
-        credentails: true
+        origin : "*"
     }
 ));
 app.use(express.json());

@@ -59,7 +59,7 @@ const main = async (userDetails) => {
 router.post("/", async (req, res) => {
     try {
         const result = await main(req.body);
-        console.log("result from /Login : " + JSON.stringify(result));
+        // console.log("result from /Login : " + JSON.stringify(result));
         res.send(result);
     } catch (err) {
         console.log("+++Error:- " + err);
