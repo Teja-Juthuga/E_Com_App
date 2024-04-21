@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 export const Navbar = () => {
     return (
         <div className="container-fluid m-0 p-0">
@@ -18,6 +20,11 @@ export const Navbar = () => {
                     </a>
                     <div className="m-auto">
                         <h2 className="text-danger"> E-Kart </h2>
+                    </div>
+                    <div>
+                        <Link className="text-danger" to="/Seller">
+                            <p className="m-2"> Become a Seller? </p>
+                        </Link>
                     </div>
                 </div>
             </nav>

@@ -7,7 +7,7 @@ import { LoginPage } from "./components/login/loginpage";
 import { SignupPage } from "./components/signup/signupPage";
 import { AccountRecoverPage } from "./components/AccountRecover/accountrecoverpage";
 import { ProductsPage } from "./components/productspage/productspage";
-
+import { Seller } from "./components/seller/seller";
 
 export const store = createContext();
 
@@ -28,6 +28,10 @@ const router = createBrowserRouter([
   {
     path : "/Shop",
     element : <ProductsPage />
+  }, 
+  {
+    path : "/Seller",
+    element : <Seller/>
   }
 
 ]);
